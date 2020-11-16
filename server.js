@@ -2,6 +2,7 @@ require('dotenv').config();
 const express = require('express');
 const app = express();
 const api = require('./utils/api');
+const axios = require('axios');
 const API_PORT = process.env.API_PORT;
 
 // MIDDLEWARE
@@ -14,11 +15,13 @@ app.get('/', (req, res) => {
 });
 
 app.post('/page', (req, res) => {
-    const asyncGetPage = async (requestUrl) => {
-        return api.getPageDom(requestUrl);
-    }
-    asyncGetPage(req.body.message)
-        .then(r => console.log(r))
+    axios.get(req.body.message)
+        .then(function (response) {
+            res.send(response.data);
+        })
+        .catch(function (err) {
+            res.send(err);
+        })
 });
 
 // START SERVER LISTEN

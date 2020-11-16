@@ -9,10 +9,12 @@ module.exports =  {
             }
         })
         .then(function(success) {
+            console.log('Success! Sending data back to client.')
+            console.log('\nsuccess.data: '+success.data)
             return success.data;
         })
         .catch(function (error) {
-            return error.message;
+           return error.message;
         })
     },
 
