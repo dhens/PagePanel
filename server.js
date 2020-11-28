@@ -14,6 +14,7 @@ app.get('/', (req, res) => {
     res.send('Welcome!');
 });
 
+// convert url to DOM data and send back to client
 app.post('/page', (req, res) => {
     axios.get(req.body.message)
         .then(function (response) {
