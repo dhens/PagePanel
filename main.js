@@ -1,4 +1,5 @@
 const { app, BrowserWindow } = require('electron');
+require('electron-reload')(__dirname);
 
 const createWindow = () => {
     const win = new BrowserWindow({
@@ -12,7 +13,7 @@ const createWindow = () => {
     win.once('ready-to-show', () => {   // render once ALL reources have loaded
         win.show();
     });
-    win.loadFile('index.html');
+    win.loadFile('./ui/index.html');
 }
 
 app.whenReady().then(createWindow);

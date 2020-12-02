@@ -1,0 +1,31 @@
+* {
+    box-sizing: border-box;
+}
+
+html {
+    background-color: #dfe6e9;
+}
+
+.button {
+    font-family: 'Fredoka One', cursive;
+    font-size: x-large;
+    background-color: #ffa502;
+    width: 200px;
+}
+
+h1 {
+    font-family: 'Fredoka One', cursive;
+    color: #2d3436;
+    font-size: xxx-large;
+}
+
+input {
+    font-family: 'Fredoka One', cursive;
+    border: 0;
+    border-radius: 0;
+    background-color: white;
+}
+
+input:focus {
+    outline-color: #34495e;
+}
