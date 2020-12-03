@@ -10,18 +10,19 @@
     <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="bulma.min.css">
     <link rel="stylesheet" href="style.css">
+    <script defer src="https://use.fontawesome.com/releases/v5.14.0/js/all.js"></script>
 </head>
 
 <body>
     <div class="container">
-        <h1 class="has-text-centered">Track a Page</h1>
+        <h1 class="has-text-centered">Track-a-Page</h1>
         <div class="field">
             <div class="colums">
                 <div class="column">
-                    <input class="input is-rounded" type="text" placeholder="https://google.com">
+                    <input id="url-input-field" class="input is-rounded is-medium has-icons-left" type="text" placeholder="https://google.com">
                 </div>
                 <div class="column has-text-centered">
-                    <button class="button is-rounded">Track!</button>
+                    <button id="submit-url-input" class="button is-rounded">Track!</button>
                 </div>
             </div>
         </div>
@@ -29,3 +30,4 @@
 </body>
 
 </html>
+<script src="index.js"></script>
