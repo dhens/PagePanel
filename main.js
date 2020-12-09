@@ -7,7 +7,7 @@ const createWindow = () => {
         width: 800,
         height: 600,
         webPreferences: {
-            nodeIntegration: true
+            nodeIntegration: false
         }
     });
     win.once('ready-to-show', () => {   // render once ALL reources have loaded

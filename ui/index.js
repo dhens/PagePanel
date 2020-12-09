@@ -1,18 +1,17 @@
 // DOM ELEMENTS
 const urlInputField = document.getElementById('url-input-field');
-const submitUrlInputBtn = document.getElementById('submit-url-input');
-const submitUrlInputBtnDefaultState = submitUrlInputBtn.className;
+const fetchBtn = document.getElementById('submit-url-input');
+
+// DOM ELEMENT DEFAULT STATES
+const fetchBtnDefaultState = fetchBtn.className;
 
 // DOM ELEMENT ANIMATIONS
-const submitUrlInputBtnIsLoading = submitUrlInputBtn.className + ' is-loading';
-
-const sanitizeInput = input => {
-}
+const fetchBtnIsLoading = fetchBtn.className + ' is-loading';
 
 // Listening Events
-submitUrlInputBtn.addEventListener('click', event => {
+fetchBtn.addEventListener('click', event => {
     event.preventDefault();
-    submitUrlInputBtn.className = submitUrlInputBtnIsLoading;  // toggle loading icon for Track! btn
+    fetchBtn.className = fetchBtnIsLoading;  // toggle loading icon for Track! btn
 
     const myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
@@ -28,6 +27,9 @@ submitUrlInputBtn.addEventListener('click', event => {
 
     fetch("http://localhost:8004/page", requestOptions)
         .then(response => response.text())
-        .then(result => console.log(result))
+        .then(result => {
+            console.log(result);
+            fetchBtn.className = fetchBtnDefaultState;
+        })
         .catch(error => console.log('error', error));
 });
