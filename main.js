@@ -7,8 +7,10 @@ const createWindow = () => {
         width: 800,
         height: 600,
         webPreferences: {
-            nodeIntegration: false
-        }
+            nodeIntegration: false,
+            enableRemoteModule: false
+        },
+        
     });
     win.once('ready-to-show', () => {   // render once ALL reources have loaded
         win.show();
