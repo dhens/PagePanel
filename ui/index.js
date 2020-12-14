@@ -1,5 +1,4 @@
 import urlSubmission from '../utils/formValidation.js';
-import formValidation from '../utils/formValidation.js';
 
 // DOM ELEMENTS
 const urlInputField = document.getElementById('url-input-field');
@@ -22,14 +21,18 @@ fetchBtn.addEventListener('click', event => {
     else {
         // Since the submittedUrl has been validated, we now will package it up in JSON format
     const validatedSubmittedUrl = JSON.stringify({ "message": `${urlInputField.value.trim()}` });
-    const myHeaders = new Headers();
-    myHeaders.append("Content-Type", "application/json");
+    const myHeaders = new Headers({
+        "Content-Type": "application/json", 
+        // Prevents certain websites from blocking due to blank UserAgent string
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.169 Safari/537.36",
+    });
 
     const requestOptions = {
         method: 'POST',
         headers: myHeaders,
         body: validatedSubmittedUrl,
         redirect: 'follow'
+
     };
 
     fetch("http://localhost:8004/page", requestOptions)
