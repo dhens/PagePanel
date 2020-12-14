@@ -1,3 +1,4 @@
+
 * {
     box-sizing: border-box;
 }
@@ -7,20 +8,20 @@ html {
 }
 
 .button {
-    font-family: 'Fredoka One', cursive;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     font-size: x-large;
     background-color: #ffa502;
     width: 200px;
 }
 
 h1 {
-    font-family: 'Fredoka One', cursive;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     color: #2d3436;
     font-size: xxx-large;
 }
 
 input {
-    font-family: 'Fredoka One', cursive;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     border: 0;
     border-radius: 0;
     background-color: white;

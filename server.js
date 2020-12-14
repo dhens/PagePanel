@@ -1,7 +1,6 @@
 require('dotenv').config();
 const express = require('express');
 const app = express();
-const api = require('./utils/api');
 const axios = require('axios');
 const API_PORT = process.env.API_PORT;
 
@@ -16,6 +15,10 @@ app.get('/', (req, res) => {
 
 // convert url to DOM data and send back to client
 app.post('/page', (req, res) => {
+    if (req.body.message === '') {
+        console.log('Error: Blank string submitted');
+        return;
+    }
     axios.get(req.body.message)
         .then(function (response) {
             res.send(response.data);

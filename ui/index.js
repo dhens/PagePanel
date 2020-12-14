@@ -11,12 +11,11 @@ const fetchBtnIsLoading = fetchBtn.className + ' is-loading';
 // Listening Events
 fetchBtn.addEventListener('click', event => {
     event.preventDefault();
-    fetchBtn.className = fetchBtnIsLoading;  // toggle loading icon for Track! btn
 
     const myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
 
-    const submittedUrl = JSON.stringify({ "message": `${urlInputField.value}` });
+    const submittedUrl = JSON.stringify({ "message": `${urlInputField.value.trim()}` });
 
     const requestOptions = {
         method: 'POST',
@@ -33,3 +32,16 @@ fetchBtn.addEventListener('click', event => {
         })
         .catch(error => console.log('error', error));
 });
+
+const toggleLoadingAnimation = domElement => {
+    // If element is not currently set to is-loading, make it so
+    if (!domElement.className.includes('is-loading')) {
+        domElement.className = domElement.className + ' is-loading';
+        return true;
+    }
+    // If element className is currently set to is-loading, remove is from the className
+    else {
+        domElement.className = domElement.className + ' is-loading';
+        return true;
+    }
+}
