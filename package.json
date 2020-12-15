@@ -18,6 +18,7 @@
     "electron-reload": "^1.5.0",
     "electron-squirrel-startup": "^1.0.0",
     "express": "^4.17.1",
+    "express-validator": "^6.8.0",
     "node-abi": "^2.19.3"
   },
   "devDependencies": {
