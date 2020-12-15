@@ -1,4 +1,5 @@
-import urlSubmission from '../utils/formValidation.js';
+import isValidUrl from './formValidation.js';
+import databaseCommands from './db.js';
 
 // DOM ELEMENTS
 const urlInputField = document.getElementById('url-input-field');
@@ -12,39 +13,38 @@ fetchBtn.addEventListener('click', event => {
     // Save submitted user data from input form
     const submittedUrl = urlInputField.value.trim();
 
-    // Validate form
-    if (urlSubmission(submittedUrl) === false) {
-        alert('Form validation failed! Please double check your URL.');
+    if (!isValidUrl(submittedUrl)) {    // Validate form
+        alert('Error: URL is blank, or you\'re already tracking this page');
         toggleLoadingAnimation(fetchBtn)
         return;
     }
     else {
-        // Since the submittedUrl has been validated, we now will package it up in JSON format
-    const validatedSubmittedUrl = JSON.stringify({ "message": `${urlInputField.value.trim()}` });
-    const myHeaders = new Headers({
-        "Content-Type": "application/json", 
-        // Prevents certain websites from blocking due to blank UserAgent string
-        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.169 Safari/537.36",
-    });
-
-    const requestOptions = {
-        method: 'POST',
-        headers: myHeaders,
-        body: validatedSubmittedUrl,
-        redirect: 'follow'
-
-    };
-
-    fetch("http://localhost:8004/page", requestOptions)
-        .then(response => response.text())
-        .then(result => {
-            console.log(result);
-            toggleLoadingAnimation(fetchBtn);
-        })
-        .catch(error => {
-            console.log('error', error);
-            toggleLoadingAnimation(fetchBtn);
+        const validatedSubmittedUrl = urlInputField.value.trim();
+        const jsonSubmittedUrl = JSON.stringify({ "message": `${urlInputField.value.trim()}` }); // convert validated string to json
+        const myHeaders = new Headers({
+            "Content-Type": "application/json",
+            "User-Agent":
+                "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.169 Safari/537.36",
         });
+
+        const requestOptions = {
+            method: 'POST',
+            headers: myHeaders,
+            body: jsonSubmittedUrl,
+            redirect: 'follow'
+
+        };
+
+        fetch("http://localhost:8004/page", requestOptions)
+            .then(response => response.text())
+            .then(result => {
+                databaseCommands.addUrl(validatedSubmittedUrl, result) // add url, DOM data to localStorage
+                toggleLoadingAnimation(fetchBtn); // turn off loading animation 
+            })
+            .catch(error => {
+                console.warn('error', error);
+                toggleLoadingAnimation(fetchBtn);
+            });
     }
 });
 

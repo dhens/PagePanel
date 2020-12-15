@@ -1,27 +1,28 @@
 "use strict";
 
-if (!window.indexedDB) {
-    console.log("Your browser doesn't support a stable version of IndexedDB. Saving feature will not be available.");
+class Database {
+
+    addUrl(key, value) {
+        localStorage.setItem(key, value);
+        if (localStorage.getItem(key)) {
+            console.log(`Added ${key} successfully`)
+        }
+        else {
+            console.warn('setItem failed! Please try again');
+        }
+    }
+
+    deleteUrl(key) {
+        localStorage.removeItem(key);
+        if (!localStorage.getItem(key)) {
+            console.log('Item deleted successfully')
+        }
+        else {
+            console.warn('Error deleting item. Please try again');
+        }
+    }
 }
 
-let request = window.indexedDB.open('SavedPagesDb', 3);
+const databaseCommands = new Database();
 
-request.onerror = event => {
-// Generic error handler for all errors targeted at this database's
-// requests!
-    console.error("Database error: " + event.target.errorCode);
-};
-
-request.onsuccess = event => {
-    // DO something with request.result
-    db = event.target.result;
-};
-
-// This event is only implemented in recent browsers
-request.onupgradeneeded = function(event) {
-    // Save the IDBDatabase interface
-    var db = event.target.result;
-  
-    // Create an objectStore for this database
-    var objectStore = db.createObjectStore("name", { keyPath: "myKey" });
-  };
+export default databaseCommands;
