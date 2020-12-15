@@ -1,5 +1,6 @@
 # PagePanel
-Tracking Mortgage Industry and Housing Market Trends from Black Knight Inc
+Track a web page and get an alert when it updates!
+ELectron app for Windows, Mac, and Linux platforms
 
 ## MVP Requirements:
 
