@@ -1,6 +1,6 @@
 # PagePanel
 Track a web page and get an alert when it updates!
-ELectron app for Windows, Mac, and Linux platforms
+**Electron app for Windows, Mac, and Linux platforms**
 
 ## MVP Requirements:
 
