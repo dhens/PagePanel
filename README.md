@@ -1,4 +1,4 @@
-# PagePane
+# PagePanel
 Tracking Mortgage Industry and Housing Market Trends from Black Knight Inc
 
 ## MVP Requirements:
