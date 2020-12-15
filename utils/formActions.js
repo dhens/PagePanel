@@ -38,6 +38,14 @@ fetchBtn.addEventListener('click', event => {
         fetch("http://localhost:8004/page", requestOptions)
             .then(response => response.text())
             .then(result => {
+                const jsonResponse = JSON.parse(result);
+                // Verify the domain we requested didnt return
+                // a blank string or empty object
+                if (result === '{}' || result === '' || jsonResponse.name === 'Error') {             
+                    toggleLoadingAnimation(fetchBtn);                        
+                    console.warn('Result response from fetch was blank, an empty object, or returned an error') 
+                    return;
+                }
                 databaseCommands.addUrl(validatedSubmittedUrl, result) // add url, DOM data to localStorage
                 toggleLoadingAnimation(fetchBtn); // turn off loading animation 
             })
