@@ -21,6 +21,10 @@ class Database {
             console.warn('Error deleting item. Please try again');
         }
     }
+
+    listAllItems() {
+        return Object.keys(localStorage)
+    }
 }
 
 const databaseCommands = new Database();

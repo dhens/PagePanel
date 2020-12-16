@@ -5,7 +5,7 @@ import databaseCommands from './db.js';
 const urlInputField = document.getElementById('url-input-field');
 const fetchBtn = document.getElementById('submit-url-input');
 
-// Listening Events
+// Fetch! button click event
 fetchBtn.addEventListener('click', event => {
     event.preventDefault(); // Prevent reload of page on button click
     toggleLoadingAnimation(fetchBtn);   // Set Track! button to run loading animation
@@ -38,10 +38,9 @@ fetchBtn.addEventListener('click', event => {
         fetch("http://localhost:8004/page", requestOptions)
             .then(response => response.text())
             .then(result => {
-                const jsonResponse = JSON.parse(result);
                 // Verify the domain we requested didnt return
                 // a blank string or empty object
-                if (result === '{}' || result === '' || jsonResponse.name === 'Error') {             
+                if (result === '{}' || result === '') {             
                     toggleLoadingAnimation(fetchBtn);                        
                     console.warn('Result response from fetch was blank, an empty object, or returned an error') 
                     return;
