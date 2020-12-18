@@ -1,17 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self';
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline'; script-src-elem https://use.fontawesome.com">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PagePanel - Pages</title>
+    <script defer src="https://use.fontawesome.com/releases/v5.14.0/js/all.js"></script>
+    <link rel="stylesheet" href="bulma.min.css">
+    <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
-    <div class="tile">
-        <h1>https://google.com</h1>
-        <a href="./index.html">Track a Page</a>
-    </div>
-    
+    <article class="message">
+        <div class="message-header">
+            <p>https://google.com</p>
+            <button class="delete" aria-label="delete"></button>
+        </div>
+        <div class="message-body is-dark">
+            <i class="far fa-clock"></i>
+            <b>5</b> minutes ago
+        </div>
+    </article>
+
 </body>
+
 </html>
