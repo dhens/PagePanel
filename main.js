@@ -1,9 +1,6 @@
 'use strict';
 const { app, BrowserWindow } = require('electron');
-require('electron-reload')(__dirname, {
-    electron: require('electron-prebuilt')
-  });
-  
+
 const createWindow = () => {
     const win = new BrowserWindow({
         show: false,    // disables rendering until ready-to-show occurs

@@ -16,8 +16,8 @@ app.get('/', (req, res) => {
 
 // convert url to DOM data and send back to client
 app.post('/page', [
-    body('message').isURL(),    // Validate that the data submitted is a URL
-    body('notifyOnReply').toBoolean()
+        body('message').isURL(),    // Validate that the data submitted is a URL
+        body('notifyOnReply').toBoolean()
 ], (req, res) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {    // If there are errors, return a 400 with the errors to the client
