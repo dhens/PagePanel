@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 class Database {
 
@@ -20,10 +20,6 @@ class Database {
         else {
             console.warn('Error deleting item. Please try again');
         }
-    }
-
-    listAllItems() {
-        return Object.keys(localStorage)
     }
 }
 
