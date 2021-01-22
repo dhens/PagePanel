@@ -3,47 +3,19 @@
 
 <head>
     <meta charset="UTF-8">
-    <!-- <meta http-equiv="Content-Security-Policy"
-        content="default-src 'self' 'unsafe-inline'; script-src-elem https://use.fontawesome.com/releases/v5.14.0/js/all.js 'self'; img-src https://via.placeholder.com/"> -->
+    <meta http-equiv="Content-Security-Policy"
+        content="default-src 'self' 'unsafe-inline'; script-src https://use.fontawesome.com/releases/v5.14.0/js/all.js 'self'; img-src https://via.placeholder.com/">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PagePanel - Pages</title>
     <script defer src="https://use.fontawesome.com/releases/v5.14.0/js/all.js"></script>
     <link rel="stylesheet" href="bulma.min.css">
     <link rel="stylesheet" href="style.css">
-    <script type="module" src="../utils/render.js"></script>
-
 </head>
 
 <body>
 
     <div class="container">
         <div class="colums" id="pagesContainer">
-            <script>
-                // Grab the URLs saved in localStorage and render each one
-                // onto our pagesContainer id element
-                Object.keys(localStorage).forEach(element => {
-
-                    // Create our elements we want rendered onto the page
-                    let divZero = document.createElement('div');
-                    let divZeroClassName = divZero.className = 'column';
-
-                    let article = document.createElement('article');
-                    let articleClassName = article.className = 'message';
-
-                    let divOne = document.createElement('div');
-                    let divOneClassName = divOne.className = 'message-header';
-
-                    let pElement = document.createElement('p');
-                    let pElementText = document.createTextNode(element)
-                    pElement.appendChild(pElementText);
-
-
-                    document.getElementById('pagesContainer').appendChild(divZero)
-                    divZero.appendChild(article);
-                    article.appendChild(divOne);
-                    divOne.appendChild(pElement);
-                });
-            </script>
             
             <!-- <div class="column">
                 <article class="message">
@@ -75,5 +47,6 @@
     </div>
 
 </body>
+<script type="module" src="../utils/render.js"></script>
 
 </html>

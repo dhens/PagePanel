@@ -30,5 +30,6 @@
 
 }
 
+SavedPages();
 
 export default SavedPages;
