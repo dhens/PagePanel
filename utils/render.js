@@ -7,7 +7,7 @@
         // onto our pagesContainer id element
         Object.keys(localStorage).forEach(element => {
         
-            // Create our elements we want rendered onto the page
+        // Create our elements we want rendered onto the page
         let divZero = document.createElement('div');
         let divZeroClassName = divZero.className = 'column';
 
@@ -21,6 +21,11 @@
         let pElementText = document.createTextNode(element)
         pElement.appendChild(pElementText);
 
+        // Screenshot div
+        let imgDiv = document.createElement('div');
+        let imgDivClassName = imgDiv.className = 'message-body is-dark';
+
+        let imgElement = document.createElement('img');
 
         document.getElementById('pagesContainer').appendChild(divZero)
         divZero.appendChild(article);

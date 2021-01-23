@@ -24,12 +24,16 @@
                 </div>
             </div>
         </div>
-        <a href="./pages.html">Pages</a>
-        <div class="notification is-hidden is-danger"> <!-- Hidden until we call the actionNotification-->
-            <button class="delete"></button>
-            Text
+        <div class="colums">
+            <div class="column has-text-centered">
+                <a href="./pages.html">Saved Pages</a>
+            </div>
         </div>
-
+    </div>
+    <div class="colums">
+        <div class="column">
+            <div class="notification is-hidden" id="notifications"></div>
+        </div>
     </div>
 </body>
 
@@ -37,3 +41,4 @@
 <script type="module" src="../utils/formActions.js"></script>
 <script type="module" src="../utils/formValidation.js"></script>
 <script type="module" src="../utils/db.js"></script>
+<script type="module" src="../utils/actionNotification.js"></script>

@@ -1,5 +1,6 @@
 import isValidUrl from './formValidation.js';
 import databaseCommands from './db.js';
+import runAlert from './actionNotification.js';
 
 // DOM ELEMENTS
 const urlInputField = document.getElementById('url-input-field');
@@ -39,7 +40,10 @@ fetchBtn.addEventListener('click', event => {
         fetch("http://localhost:8004/page", requestOptions)
             .then(response => response.text())
             .then(result => {
-                console.log(`response: ${result}`)
+                if (result.includes('{"message":"getaddrinfo ENOTFOUND')) {
+                    runAlert(`Unable to save ${validatedSubmittedUrl}`, 'notification is-danger');
+                    toggleLoadingAnimation(fetchBtn);
+                }
                 // Verify the domain we requested didnt return
                 // a blank string or empty object, and that the 
                 // server didnt return Error from proessing the submitted data
@@ -49,13 +53,14 @@ fetchBtn.addEventListener('click', event => {
                     console.warn('Result response from fetch was blank, an empty object, or returned an error')
                     return;
                 }
-                if (result.name) {
+                if (result.name === 'Error') {
                     toggleLoadingAnimation(fetchBtn);
                     console.warn('Result response from fetch returned an error')
                     return;
                 }
-                else {
+                else {  // All validations successful
                     databaseCommands.addUrl(validatedSubmittedUrl, result) // add url, DOM data to localStorage
+                    runAlert(`Added ${validatedSubmittedUrl}`, 'notification is-success');
                     toggleLoadingAnimation(fetchBtn); // turn off loading animation 
                 }
             })

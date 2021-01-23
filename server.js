@@ -27,7 +27,13 @@ app.post('/page', [
     else {
         axios.get(req.body.message) // Grab the DOM data of the user submitted URL
             .then(function (response) {
-                res.send(response.data);
+                if (response.name) { // If response has a .name value, it means an error was returned from axios
+                    res.send('Error');
+                    return;
+                }
+                else {
+                    res.send(response.data);
+                }
             })
             .catch(function (err) {
                 res.send(err);

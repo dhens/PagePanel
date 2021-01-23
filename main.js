@@ -7,7 +7,7 @@ const createWindow = () => {
         show: false,    // disables rendering until ready-to-show occurs
         width: 800,
         height: 600,
-        resizable: false,
+        resizable: true,
         webPreferences: {
             nodeIntegration: false,
             enableRemoteModule: false
