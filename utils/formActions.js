@@ -44,14 +44,14 @@ fetchBtn.addEventListener('click', event => {
                 // a blank string or empty object, and that the 
                 // server didnt return Error from proessing the submitted data
                 // on the backend
-                if (result === '{}' || result === '' || result === 'Error') {             
-                    toggleLoadingAnimation(fetchBtn);                        
-                    console.warn('Result response from fetch was blank, an empty object, or returned an error') 
+                if (result === '{}' || result === '' || result === 'Error') {
+                    toggleLoadingAnimation(fetchBtn);
+                    console.warn('Result response from fetch was blank, an empty object, or returned an error')
                     return;
                 }
-                if (result.name){
-                    toggleLoadingAnimation(fetchBtn);                        
-                    console.warn('Result response from fetch returned an error') 
+                if (result.name) {
+                    toggleLoadingAnimation(fetchBtn);
+                    console.warn('Result response from fetch returned an error')
                     return;
                 }
                 else {

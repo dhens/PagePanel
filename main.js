@@ -12,7 +12,7 @@ const createWindow = () => {
             nodeIntegration: false,
             enableRemoteModule: false
         },
-        
+
     });
     win.once('ready-to-show', () => {   // render once ALL reources have loaded
         win.show();
