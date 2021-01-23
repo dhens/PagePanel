@@ -1,7 +1,7 @@
 'use strict';
 // import elements from '../utils/pagesDomElements';
 
-    const SavedPages = () => {
+    const renderSavedPages = () => {
 
         // Grab the URLs saved in localStorage and render each one
         // onto our pagesContainer id element
@@ -30,6 +30,6 @@
 
 }
 
-SavedPages();
+renderSavedPages();
 
-export default SavedPages;
+export default renderSavedPages;

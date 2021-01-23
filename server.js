@@ -22,15 +22,17 @@ app.post('/page', [
     const errors = validationResult(req);
     if (!errors.isEmpty()) {    // If there are errors, return a 400 with the errors to the client
         console.log('/page POST validation failed: ' + req.body.message)
-        return res.status(400);
+        return res.send('Error');
     }
-    axios.get(req.body.message) // Grab the DOM data of the user submitted URL
-        .then(function (response) {
-            res.send(response.data);
-        })
-        .catch(function (err) {
-            res.send(err);
-        })
+    else {
+        axios.get(req.body.message) // Grab the DOM data of the user submitted URL
+            .then(function (response) {
+                res.send(response.data);
+            })
+            .catch(function (err) {
+                res.send(err);
+            })
+        }
 });
 
 // START SERVER LISTEN
