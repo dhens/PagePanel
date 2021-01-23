@@ -2,6 +2,8 @@ require('dotenv').config();
 const express = require('express');
 const app = express();
 const axios = require('axios');
+const puppeteer = require('puppeteer');
+const expressTools = require('./express-tools')
 const { body, validationResult } = require('express-validator');
 const API_PORT = process.env.API_PORT;
 
@@ -33,6 +35,16 @@ app.post('/page', [
                 }
                 else {
                     res.send(response.data);
+                    // Take screenshot of site
+                    // let url = String(req.body.message);
+                    // let fileName = removeSubstring(url, 'https://') + '.jpg';
+                    (async () => {
+                        const browser = await puppeteer.launch();
+                        const page = await browser.newPage();
+                        await page.goto(req.body.message);
+                        await page.screenshot({path: 'test2.jpg'});
+                        await browser.close();
+                    })();
                 }
             })
             .catch(function (err) {

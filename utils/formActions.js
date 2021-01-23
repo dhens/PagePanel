@@ -14,8 +14,8 @@ fetchBtn.addEventListener('click', event => {
     // Save submitted user data from input form
     const submittedUrl = urlInputField.value.trim();
 
+    // if non truthy value if returned from the form validation, then turn off the loading animation and stop
     if (!isValidUrl(submittedUrl)) {
-        alert('Error: URL is blank, or you\'re already tracking this page');
         toggleLoadingAnimation(fetchBtn)
         return;
     }
@@ -40,7 +40,7 @@ fetchBtn.addEventListener('click', event => {
         fetch("http://localhost:8004/page", requestOptions)
             .then(response => response.text())
             .then(result => {
-                if (result.includes('{"message":"getaddrinfo ENOTFOUND')) {
+                if (result.includes('{"message":"')) {
                     runAlert(`Unable to save ${validatedSubmittedUrl}`, 'notification is-danger');
                     toggleLoadingAnimation(fetchBtn);
                 }
@@ -90,3 +90,5 @@ const removeSubstring = (string, substring) => {
     const seperatedString = seperatedArray.join('');   // join seperatedArray with empty string
     return seperatedString;
 }
+
+export default {fetchBtn, toggleLoadingAnimation};

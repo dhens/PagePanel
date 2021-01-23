@@ -1,11 +1,13 @@
+import runAlert from './actionNotification.js'
+
 const isValidUrl = url => {
     if (url.trim() === '' || url.length === 0) {
-        return false;
-        // return 'Your URL cannot be blank!';
+       runAlert('Your URL cannot be blank!', 'notification is-danger');
+       return false;
     }
-    else if (localStorage.getItem(url)) {   // check if item already exists in localStorage
+    if (localStorage.getItem(url)) {   // check if item already exists in localStorage
+        runAlert('You already are monitoring this url :)', 'notification is-info');
         return false;
-        // return 'You already are monitoring ' + url;
     }
     else {
         return true;
