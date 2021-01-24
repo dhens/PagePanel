@@ -16,8 +16,12 @@ fetchBtn.addEventListener('click', event => {
 
     // if non truthy value if returned from the form validation, then turn off the loading animation and stop
     if (!isValidUrl(submittedUrl)) {
+        console.log('isValidUrl returned false!')
         toggleLoadingAnimation(fetchBtn)
         return;
+    }
+    if (isValidUrl(submittedUrl)) {
+        console.log('isValidUrl returned true')
     }
     else {
         const validatedSubmittedUrl = urlInputField.value.trim();
