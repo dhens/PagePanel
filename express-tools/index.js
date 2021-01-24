@@ -3,3 +3,5 @@ const removeSubstring = (string, substring) => {
     const seperatedString = seperatedArray.join('');   // join seperatedArray with empty string
     return seperatedString;
 }
+
+module.exports = removeSubstring;
