@@ -1,12 +1,14 @@
 'use strict';
-// import elements from '../utils/pagesDomElements';
+
+import { removeSubstring, urlToFilename } from './algos.js';
+
+// import removeSubstring from './formActions.js';
 
     const renderSavedPages = () => {
 
         // Grab the URLs saved in localStorage and render each one
         // onto our pagesContainer id element
         Object.keys(localStorage).forEach(element => {
-        
         // Create our elements we want rendered onto the page
         let divZero = document.createElement('div');
         let divZeroClassName = divZero.className = 'column';
@@ -26,11 +28,15 @@
         let imgDivClassName = imgDiv.className = 'message-body is-dark';
 
         let imgElement = document.createElement('img');
+        let imgFilename = urlToFilename(element);   // Strip https://, http://, .com, slashes, with regex
+        imgElement.src = `../ui/assets/img/${imgFilename}.jpg`
 
         document.getElementById('pagesContainer').appendChild(divZero)
         divZero.appendChild(article);
         article.appendChild(divOne);
         divOne.appendChild(pElement);
+        divOne.appendChild(imgDiv);
+        imgDiv.appendChild(imgElement);
         });
 
 }

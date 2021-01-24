@@ -1,6 +1,7 @@
 import isValidUrl from './formValidation.js';
 import databaseCommands from './db.js';
 import runAlert from './actionNotification.js';
+import { removeSubstring, urlToFilename } from './algos.js'
 
 // DOM ELEMENTS
 const urlInputField = document.getElementById('url-input-field');
@@ -84,12 +85,6 @@ const toggleLoadingAnimation = domElement => {
         domElement.className = removeSubstring(domElement.className, 'is-loading');
         return true;
     }
-}
-
-const removeSubstring = (string, substring) => {
-    const seperatedArray = string.split(substring);    // split the string, removing the substring
-    const seperatedString = seperatedArray.join('');   // join seperatedArray with empty string
-    return seperatedString;
 }
 
 export default {fetchBtn, toggleLoadingAnimation};

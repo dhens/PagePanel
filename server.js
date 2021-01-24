@@ -3,7 +3,7 @@ const express = require('express');
 const app = express();
 const axios = require('axios');
 const puppeteer = require('puppeteer');
-const removeSubstring = require('./express-tools')
+const urlToFilename = require('./express-tools')
 const { body, validationResult } = require('express-validator');
 const API_PORT = process.env.API_PORT;
 
@@ -27,7 +27,8 @@ app.post('/page', [
         return res.send('Error');
     }
     else {
-        axios.get(req.body.message) // Grab the DOM data of the user submitted URL
+        let url = req.body.message
+        axios.get(url) // Grab the DOM data of the user submitted URL
             .then(response => {
                 if (response.code) { // If response has a .name value, it means an error was returned from axios
                     console.log('response.code threw error')
@@ -37,16 +38,12 @@ app.post('/page', [
                 else {
                     res.send(response.data);
                     // Take screenshot of site
-                    // let url = String(req.body.message);
-                    // let fileName = removeSubstring(url, 'https://') + '.jpg';
                     (async () => {
-                        var filename = removeSubstring(String(req.body.message), 'https://');
-                        var filename = removeSubstring(filename, '.com');
-                        var filename = './ui/assets/img/'+filename+'.jpg';
-                        console.log(filename);
+                        var strippedUrl; = urlToFilename(url);
+                        var filename = './ui/assets/img/'+strippedUrl+'.jpg';
                         const browser = await puppeteer.launch();
                         const page = await browser.newPage();
-                        await page.goto(req.body.message);
+                        await page.goto(url);
                         await page.screenshot({path: filename});
                         await browser.close();
                         return;
