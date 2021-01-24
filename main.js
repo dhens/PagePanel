@@ -9,6 +9,7 @@ const createWindow = () => {
         height: 600,
         resizable: true,
         webPreferences: {
+            contextIsolation: true,
             nodeIntegration: false,
             enableRemoteModule: false
         },

@@ -1,14 +1,12 @@
 'use strict';
 
-import { removeSubstring, urlToFilename } from './algos.js';
+import * as algos from './algos.js';
 
-// import removeSubstring from './formActions.js';
+const renderSavedPages = () => {
 
-    const renderSavedPages = () => {
-
-        // Grab the URLs saved in localStorage and render each one
-        // onto our pagesContainer id element
-        Object.keys(localStorage).forEach(element => {
+    // Grab the URLs saved in localStorage and render each one
+    // onto our pagesContainer id element
+    Object.keys(localStorage).forEach(element => {
         // Create our elements we want rendered onto the page
         let divZero = document.createElement('div');
         let divZeroClassName = divZero.className = 'column';
@@ -28,7 +26,7 @@ import { removeSubstring, urlToFilename } from './algos.js';
         let imgDivClassName = imgDiv.className = 'message-body is-dark';
 
         let imgElement = document.createElement('img');
-        let imgFilename = urlToFilename(element);   // Strip https://, http://, .com, slashes, with regex
+        let imgFilename = algos.urlToFilename(element);   // Strip https://, http://, .com, slashes, with regex
         imgElement.src = `../ui/assets/img/${imgFilename}.jpg`
 
         document.getElementById('pagesContainer').appendChild(divZero)
@@ -37,7 +35,7 @@ import { removeSubstring, urlToFilename } from './algos.js';
         divOne.appendChild(pElement);
         divOne.appendChild(imgDiv);
         imgDiv.appendChild(imgElement);
-        });
+    });
 
 }
 

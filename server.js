@@ -3,7 +3,7 @@ const express = require('express');
 const app = express();
 const axios = require('axios');
 const puppeteer = require('puppeteer');
-const urlToFilename = require('./express-tools')
+const expressTools = require('./express-tools')
 const { body, validationResult } = require('express-validator');
 const API_PORT = process.env.API_PORT;
 
@@ -39,7 +39,7 @@ app.post('/page', [
                     res.send(response.data);
                     // Take screenshot of site
                     (async () => {
-                        var strippedUrl = urlToFilename(url);
+                        var strippedUrl = expressTools.urlToFilename(url);
                         var filename = './ui/assets/img/'+strippedUrl+'.jpg';
                         const browser = await puppeteer.launch();
                         const page = await browser.newPage();
@@ -47,7 +47,11 @@ app.post('/page', [
                         await page.screenshot({path: filename});
                         await browser.close();
                         return;
-                    })();
+                    })()
+                    .then(() => { console.log('Saved screenshot successfully!')})
+                    .catch = err => {
+                        console.log(`Failed saving screenshot: ${err}`);
+                    };
                 }
             })
             .catch(function (err) {

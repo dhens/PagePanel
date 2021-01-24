@@ -5,7 +5,14 @@ export const removeSubstring = (string, substring) => {
 }
 
 export const urlToFilename = url => {
-    let removedSpecialChars = url.replace(/[\/\\\:\s]/g, '');
-    let removeHypertext = removedSpecialChars.replace(/^(https|http)/g, '');
-    return removeHypertext.replace(/(.com)/g, '');
+    let removedSpecialChars = url.replace(/[^\w\s\b.]/g, '');
+    let removedHypertext = removedSpecialChars.replace(/^(https|http)/g, '');
+
+    if (removedHypertext.length <= 50) {
+        console.log('final filename is less than 50 chars')
+        return removedHypertext;
+    }
+    else {
+        return removedHypertext.slice(0, 50);
+    }
 }
