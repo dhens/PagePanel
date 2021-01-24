@@ -14,17 +14,13 @@ fetchBtn.addEventListener('click', event => {
     // Save submitted user data from input form
     const submittedUrl = urlInputField.value.trim();
 
-    // if non truthy value if returned from the form validation, then turn off the loading animation and stop
+    // if non truthy value is returned from the form validation, then turn off the loading animation and cease function
     if (!isValidUrl(submittedUrl)) {
-        console.log('isValidUrl returned false!')
-        toggleLoadingAnimation(fetchBtn)
+        toggleLoadingAnimation(fetchBtn);
         return;
     }
-    if (isValidUrl(submittedUrl)) {
-        console.log('isValidUrl returned true')
-    }
     else {
-        const validatedSubmittedUrl = urlInputField.value.trim();
+        const validatedSubmittedUrl = submittedUrl;
         const jsonSubmittedUrl = JSON.stringify({ "message": `${urlInputField.value.trim()}` }); // convert validated string to json
         const myHeaders = new Headers({
             "Content-Type": "application/json",
@@ -44,9 +40,10 @@ fetchBtn.addEventListener('click', event => {
         fetch("http://localhost:8004/page", requestOptions)
             .then(response => response.text())
             .then(result => {
-                if (result.includes('{"message":"')) {
+                if (result.includes('ENOTFOUND') || result.includes('ECONNREFUSED')) { // common axios failure responses
                     runAlert(`Unable to save ${validatedSubmittedUrl}`, 'notification is-danger');
                     toggleLoadingAnimation(fetchBtn);
+                    return;
                 }
                 // Verify the domain we requested didnt return
                 // a blank string or empty object, and that the 

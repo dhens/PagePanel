@@ -22,14 +22,16 @@ app.post('/page', [
     body('notifyOnReply').toBoolean()
 ], (req, res) => {
     const errors = validationResult(req);
-    if (!errors.isEmpty()) {    // If there are errors, return a 400 with the errors to the client
+    if (!errors.isEmpty()) {    // If there are errors, return Error
         console.log('/page POST validation failed: ' + req.body.message)
         return res.send('Error');
     }
     else {
         axios.get(req.body.message) // Grab the DOM data of the user submitted URL
-            .then(function (response) {
-                if (response.name) { // If response has a .name value, it means an error was returned from axios
+            .then(response => {
+                console.log(response)
+                if (response.code) { // If response has a .name value, it means an error was returned from axios
+                    console.log('response.code threw error')
                     res.send('Error');
                     return;
                 }

@@ -6,7 +6,7 @@ const isValidUrl = url => {
        return false;
     }
     if (localStorage.getItem(url)) {   // check if item already exists in localStorage
-        runAlert('You already are monitoring this url :)', 'notification is-info');
+        runAlert('You are already monitoring this page 😀', 'notification is-info');
         return false;
     }
     else {
