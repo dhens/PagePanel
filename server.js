@@ -39,7 +39,7 @@ app.post('/page', [
                     res.send(response.data);
                     // Take screenshot of site
                     (async () => {
-                        var strippedUrl; = urlToFilename(url);
+                        var strippedUrl = urlToFilename(url);
                         var filename = './ui/assets/img/'+strippedUrl+'.jpg';
                         const browser = await puppeteer.launch();
                         const page = await browser.newPage();
