@@ -1,6 +1,7 @@
 'use strict';
 const { app, BrowserWindow } = require('electron');
 require('electron-reload')(__dirname);
+require('./server.js')
 
 const createWindow = () => {
     const win = new BrowserWindow({
@@ -8,6 +9,7 @@ const createWindow = () => {
         width: 800,
         height: 600,
         resizable: true,
+        // autoHideMenuBar: true,
         webPreferences: {
             contextIsolation: true,
             nodeIntegration: false,
@@ -21,7 +23,21 @@ const createWindow = () => {
     win.loadFile('./ui/index.html');
 }
 
-app.whenReady().then(createWindow);
+const runExpress = () => {
+    const hiddenWindow = new BrowserWindow({
+        show: false,    // disables rendering until ready-to-show occurs
+        webPreferences: {
+            contextIsolation: true,
+            nodeIntegration: false,
+            enableRemoteModule: false
+        },
+
+    });
+    hiddenWindow.loadFile('./server.js');
+}
+
+app.whenReady().then(createWindow, runExpress);
+
 
 app.on('window-all-closed', () => {
     if (process.platform !== 'darwin') {
